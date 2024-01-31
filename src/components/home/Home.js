@@ -21,7 +21,6 @@ export default function Home() {
 
   return (
     <div className="homePage">
-      <h1>THis is home page</h1>
       <div className="homeBody">
         <div className="sections">
           <span className="sectionHeading">Albums</span>
@@ -83,7 +82,7 @@ export default function Home() {
             4th music
           </div>
         </div>
-
+        <Footer/>
       </div>
       
       
