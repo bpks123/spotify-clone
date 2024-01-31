@@ -6,25 +6,30 @@ import Navbar from './components/home/Navbar'
 import Home from './components/home/Home';
 import Search from './components/home/Search';
 import SearchAll from './components/home/SearchAll';
+import Premium from './layouts/Premium';
 export default function App() {
   
 
     return (
+      <Router>
       <div style={{ display: "flex" }}>
         <SideBar/>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          
+          
           <Navbar/>
-          <Router>
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/search' element={<Search/>}/>
               <Route path='/searchAll' element={<SearchAll/>}/>
+              <Route path="/premium" element={<Premium/>}/>
             </Routes>
-          </Router>
+          
           
         </div>
         
       </div>
+      </Router>
       
     );
 }

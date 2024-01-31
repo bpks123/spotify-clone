@@ -11,7 +11,8 @@ import {
     Toolbar,
     Typography,
   } from "@mui/material";
-  import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
 export default function Navbar() {
     const [searchQuery, setSearchQuery] = useState("")
     const [open, setOpen] = useState(false);
@@ -45,9 +46,9 @@ export default function Navbar() {
             </Toolbar>
         </AppBar>
         <div style={{display:"flex",gap:"20px"}}>
-            <div>Premium</div>
-            <div>Sign Up</div>
-            <div>Login</div>
+          <Link to="/premium" className="premiumLink">Premium</Link>
+          <Link to="/search" className="signUpLink">Sign up</Link>
+          <Link to="/search" className="logInLink">Login</Link>
         </div>
       </div>
     </div>
