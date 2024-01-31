@@ -12,12 +12,17 @@ import {
 
 export default function Cards({music}) {
   const navigate=useNavigate()
-  console.log(music)
+  const handleCardClick = () => {
+    // dispatch({ type: "SET_SELECTED_CARD", payload: music });
+    console.log(music);
+    navigate("/album");
+  };
 
   return (
     <div className="card ">
       <Card 
-        sx={{ maxWidth: 160 }}>
+        sx={{ maxWidth: 160 }} 
+        onClick={()=>handleCardClick()}>
           <CardActionArea>
           <CardMedia
             component="img"

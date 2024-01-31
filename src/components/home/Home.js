@@ -38,7 +38,7 @@ export default function Home() {
   },[])
   const displayedMusic = musicList.slice(1, 6);
   const displayedMusic_two = musicList.slice(6, 11);
-  const displayedMusic_three = musicList.slice(12, 17);
+  const displayedMusic_three = musicList.slice(15, 20);
   const width = window.screen.width;
 
 console.log(musicList)
