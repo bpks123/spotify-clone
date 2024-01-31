@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./home.css"
 import Footer from "./Footer.js"
 import favoriteimg from "./favoriteimg.jpg";
-
+import Cards from '../Card/Cards.js';
 
 
 export default function Home() {
@@ -53,8 +53,8 @@ console.log(musicList)
         </div>
         <div className="sectionGrid">
         {displayedMusic.map((music) => (
-            // <Cards key={music._id} music={music} />
-            <img src={music.image}/>
+            <Cards key={music._id} music={music} />
+            
           ))}
         </div>
         <div className="sections">
@@ -64,18 +64,9 @@ console.log(musicList)
           </Link>
         </div>
         <div className="sectionGrid">
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            1st music
-          </div>
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            2nd music
-          </div>
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            3rd music
-          </div>
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            4th music
-          </div>
+        {displayedMusic_two.map((music) => (
+            <Cards key={music._id} music={music} />
+          ))}
         </div>
         <div className="sections">
           <span className="sectionHeading">Music Albums</span>
@@ -84,18 +75,9 @@ console.log(musicList)
           </Link>
         </div>
         <div className="sectionGrid">
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            1st music
-          </div>
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            2nd music
-          </div>
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            3rd music
-          </div>
-          <div style={{height:"200px",width:"180px",border:"1px solid white",textAlign:"center",padding:"10px"}}>
-            4th music
-          </div>
+        {displayedMusic_three.map((music) => (
+            <Cards key={music._id} music={music} />
+          ))}
         </div>
         <Footer/>
       </div>
