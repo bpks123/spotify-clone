@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer style={{ margin: "auto", paddingBottom: "50px", paddingTop: "30px" }}>
+    <footer style={{ margin: "auto", paddingBottom: "30px", paddingTop: "40px" }}>
       <Container>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
             {/* First div for flex */}
@@ -91,7 +91,7 @@ export default function Footer() {
         <Typography
           variant="body2"
           align="center"
-          sx={{ mt: "20px", pb: "20px" }}>
+          sx={{ mt: "20px", pb: "10px" }}>
           © {new Date().getFullYear()} Spotify Music
         </Typography>
       </Container>
