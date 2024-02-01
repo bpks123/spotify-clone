@@ -8,6 +8,7 @@ import Search from './components/home/Search';
 import SearchAll from './components/home/SearchAll';
 import Premium from './layouts/Premium';
 import AlbumSongs from './components/Card/AlbumSongs';
+import SongCards from './components/Card/SongCards';
 export default function App() {
   
 
@@ -24,6 +25,7 @@ export default function App() {
               <Route path='/search' element={<Search/>}/>
               <Route path='/searchAll' element={<SearchAll/>}/>
               <Route path='/album' element={<AlbumSongs/>}/>
+              <Route path='/songs' element={<SongCards/>}/>
               <Route path="/premium" element={<Premium/>}/>
             </Routes>
           
