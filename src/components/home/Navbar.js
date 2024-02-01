@@ -47,8 +47,8 @@ export default function Navbar() {
         </AppBar>
         <div style={{display:"flex",gap:"20px"}}>
           <Link to="/premium" className="premiumLink">Premium</Link>
-          <Link to="/search" className="signUpLink">Sign up</Link>
-          <Link to="/search" className="logInLink">Login</Link>
+          <Link to="/signup" className="signUpLink">Sign up</Link>
+          <Link to="/login" className="logInLink">Login</Link>
         </div>
       </div>
     </div>

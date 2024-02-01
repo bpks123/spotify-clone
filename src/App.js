@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom'
+import {BrowserRouter as Router,Routes,Route,Link,useLocation} from 'react-router-dom'
 import "./styles/App.css";
 import SideBar from './components/sideBar/SideBar';
 import Navbar from './components/home/Navbar'
@@ -9,6 +9,8 @@ import SearchAll from './components/home/SearchAll';
 import Premium from './layouts/Premium';
 import AlbumSongs from './components/Card/AlbumSongs';
 import SongCards from './components/Card/SongCards';
+import Login from './components/Login/Login';
+import SignUp from './components/Sinup/Sinup';
 export default function App() {
   
 
@@ -26,6 +28,8 @@ export default function App() {
               <Route path='/searchAll' element={<SearchAll/>}/>
               <Route path='/album' element={<AlbumSongs/>}/>
               <Route path='/songs' element={<SongCards/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path='/signup' element={<SignUp/>}/>
               <Route path="/premium" element={<Premium/>}/>
             </Routes>
           
@@ -37,3 +41,4 @@ export default function App() {
       
     );
 }
+
