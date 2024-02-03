@@ -11,11 +11,13 @@ import AlbumSongs from './components/Card/AlbumSongs';
 import SongCards from './components/Card/SongCards';
 import Login from './components/Login/Login';
 import SignUp from './components/Sinup/Sinup';
+import  {useStateProvider} from "./components/utils/StateProvider"
+
 export default function App() {
   
-
     return (
       <Router>
+        
       <div style={{ display: "flex" }}>
         <SideBar/>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>

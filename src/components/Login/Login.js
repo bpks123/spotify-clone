@@ -33,7 +33,12 @@ export default function Login() {
       })
       console.log(response)
       if (response.status === 200){
-      
+        let result= await response.json()
+        console.log(result)
+        console.log(result.data.name)
+        localStorage.setItem("jwtToken", result.token);
+        localStorage.setItem("userName", result.data.name);
+        await navigate("/")
         alert('Sing in succefully')
       }
       else{

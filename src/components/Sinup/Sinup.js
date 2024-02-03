@@ -60,9 +60,17 @@ export default function Sinup() {
         body:JSON.stringify({...user})
       })
       if (response.status === 201){
+        let result=await response.json()
+        console.log(result)
+        console.log(result.data)
         setUserData(response);
-        console.log(userData);
+        // console.log(userData);
         alert('Sing up succefully')
+        setTimeout(()=>{
+          navigate("/login")
+        },2000)
+      }else{
+        alert("sign up failed")
       }
       
       
