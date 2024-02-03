@@ -12,16 +12,38 @@ export default function Login() {
 
   const navigate = useNavigate();
   const projectId="c91eotf57uop";
+
   let headersList = {
     projectId: projectId,
     "Content-Type": "application/json",
   };
 
-  const handleLogin=()=>{
-
-  }
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try{
+      const user={
+        email:email,
+        password:password,
+        appType:"music",
+      }
+      let response= await fetch("https://academics.newtonschool.co/api/v1/user/login",{
+        method:'POST',
+        headers:headersList,
+        body:JSON.stringify({...user})
+      })
+      console.log(response)
+      if (response.status === 200){
+      
+        alert('Sing in succefully')
+      }
+      else{
+        alert('Sing in Failed')
+      }
+
+    }
+    catch(error){
+      alert(error)      
+    }
   };
 
   return (
@@ -93,7 +115,7 @@ export default function Login() {
             </Box>
             <Box className="w-full text-left py-4">
               <input
-                onClick={handleLogin}
+                // onClick={handleLogin}
                 type="submit"
                 value="Log in"
                 className="submit-button"
