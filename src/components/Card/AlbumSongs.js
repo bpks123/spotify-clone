@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import "./AlbumSongs.css";
 import { Box, Typography, createTheme } from "@mui/material";
 import Table from "@mui/material/Table";
@@ -10,15 +10,26 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
 import Footer from "./../home/Footer"
+import { useStateProvider } from '../utils/StateProvider';
 
 const theme = createTheme();
 
 export default function AlbumSongs() {
+
+  const [{ selectedCard, favorites, token, selectedSong }, dispatch] = useStateProvider();
   const navigate = useNavigate();
-  const handleSongClick=()=>{
-    console.log('Going to song page')
-    navigate("/songs");
-  }
+
+  const handleSongClick = (song) => {
+    dispatch({ type: "SET_SELECTED_SONG", payload: song });
+    navigate("/song");
+  };
+  const dateCalculator = (str) => {
+    var curDate = new Date(str);
+    var localOffset = new Date().getTimezoneOffset();
+    var localTime = new Date(curDate.getTime() - localOffset * 60000);
+
+    return localTime.toLocaleString();
+  };
 
   return (
     <Box
