@@ -11,6 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Footer from "./../home/Footer"
 import { useNavigate } from "react-router-dom";
+import {useStateProvider} from "../utils/StateProvider"
 import "./../Card/SongCards.css"
 const theme = createTheme();
 
@@ -18,8 +19,129 @@ export default function SongCards() {
 
   const [musicList, setMusicList] = useState([]);
   const navigate = useNavigate();
+  const [{ selectedCard, selectedSong, favorites, token }, dispatch] = useStateProvider();
 
   const projectId="c91eotf57uop";
+  const handleSongClick = (song, id) => {
+    dispatch({ type: "SET_SELECTED_SONG", payload: song });
+    dispatch({ type: "SET_SELECTED_ID", payload: id });
+    if (token) {
+      navigate("/song");
+    } else {
+      navigate("/login");
+    }
+  };
+  const handleArtistClick = (artistId) => {
+    dispatch({
+      type: "SET_SELECTED_ARTIST",
+      payload: artistId,
+    });
+    navigate("/artist");
+  };
+
+  const isFavorite = (song) => {
+    console.log(song.album);
+    const songId = song.album;
+    return favorites.includes(songId);
+  };
+  const handleCheckLike = (song) => {};
+
+  useEffect(() => {
+    var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedSelectedSong = {
+      ...selectedSong,
+      color: favoritesData.some((item) => item._id === selectedSong._id),
+    };
+
+    dispatch({ type: "SET_SELECTED_SONG", payload: updatedSelectedSong });
+  }, []);
+
+  const handleFavoriteClick = (song) => {
+    if (!token) {
+      alert("Please Login");
+    } else {
+      var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+      const updatedSelectedSong = {
+        ...selectedSong,
+        color: favoritesData.some((item) => item._id === selectedSong._id)
+          ? false
+          : true,
+      };
+
+      dispatch({ type: "SET_SELECTED_SONG", payload: updatedSelectedSong });
+      dispatch({ type: "TOGGLE_FAVORITE", payload: selectedSong });
+
+      const isSongInFavorites = favoritesData.some(
+        (item) => item._id === song._id,
+      );
+
+      if (!isSongInFavorites) {
+        favoritesData.push(song);
+      } else {
+        const updatedFavorites = favoritesData.filter(
+          (item) => item._id !== song._id,
+        );
+        favoritesData = updatedFavorites;
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favoritesData));
+    }
+  };
+  
+  useEffect(() => {
+    var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedSelectedSong = {
+      ...selectedSong,
+      color: favoritesData.some((item) => item._id === selectedSong._id),
+    };
+
+    if (updatedSelectedSong.color !== selectedSong.color) {
+      dispatch({ type: "SET_SELECTED_SONG", payload: updatedSelectedSong });
+    }
+    console.log("After dispatch - selectedSong:", selectedSong);
+  }, [selectedSong]);
+  useEffect(() => {
+    console.log("After dispatch - favorites:", favorites);
+  }, [favorites]);
+
+  useEffect(()=>{
+    const fetchArtistData= async (artistId)=>{
+      try{
+        let response=await fetch(`https://academics.newtonschool.co/api/v1/music/artist/${artistId}`,{
+          headers: {
+            projectId: projectId,
+          }})
+        response=await response.json()
+        return response
+      }
+
+      catch(error){
+        alert(error)
+        return null
+      }
+
+    }
+    const updateMusicList = async () => {
+      const artistDataPromises = selectedSong.artist.map((artistId) =>
+        fetchArtistData(artistId),
+      );
+      const artistData = await Promise.all(artistDataPromises);
+      setMusicList(artistData.filter((data) => data !== null));
+    };
+    
+    updateMusicList();
+  },[selectedSong.artist, projectId])
+
+  
+  const dateCalculator = (str) => {
+    var utcDate = new Date(str);
+    var localOffset = new Date().getTimezoneOffset();
+    var localTime = new Date(utcDate.getTime() - localOffset * 60000);
+
+    return localTime.toLocaleString();
+  };
+
+
   const style = {
     container: {
       display: "table-cell",
@@ -44,7 +166,7 @@ export default function SongCards() {
         <Box>
           <div className="onImage">
             <Box display="flex" width="100%" justifyContent="space-evenly">
-              <img src="" style={{ width: "150px", height: "150px" }}/>
+              <img src={selectedSong.thumbnail} style={{ width: "150px", height: "150px" }}/>
               <Typography variant="h4"
                 sx={{
                   marginTop: "20px",
