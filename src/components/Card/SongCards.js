@@ -127,6 +127,8 @@ export default function SongCards() {
       );
       const artistData = await Promise.all(artistDataPromises);
       setMusicList(artistData.filter((data) => data !== null));
+      console.log("Music list")
+      console.log(musicList)
     };
     
     updateMusicList();
@@ -181,16 +183,17 @@ export default function SongCards() {
                     fontSize: "19px",
                   },
                 }}>
-                  Chad chupa badal me from (Chak De India)
+                  {selectedSong.title} from ({selectedCard.title} Album)
               </Typography>
             </Box>
             <Typography variant="h6" sx={{ marginTop: "20px" }}>
-              Sukhwendar Singh
+            {selectedCard.artists[0].name}
             </Typography>
             <Typography
               variant="h"
               sx={{ marginTop: "20px", marginBottom: "10px" }}>
-              34,134,343 Followers . 7 Songs
+              34,134,343 Followers . {selectedCard.songs.length}{" "}
+              {selectedCard.songs.length <= 1 ? "song" : "songs"}
             </Typography>
           </div>
           <div
@@ -205,9 +208,21 @@ export default function SongCards() {
             <button className="faplayclass">
               <FaPlay className="faplay" />
             </button>
-            {/* Need to change the code add the favorite card */}
-            <FavoriteBorderIcon
-                // onClick={() => handleFavoriteClick(selectedSong)}
+          
+            {selectedSong?.color && token ? (
+              <FavoriteIcon
+                onClick={() => handleFavoriteClick(selectedSong)}
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                  marginLeft: "20px",
+                  cursor: "pointer",
+                  color: "pink",
+                }}
+              />
+            ) : (
+              <FavoriteBorderIcon
+                onClick={() => handleFavoriteClick(selectedSong)}
                 sx={{
                   width: "40px",
                   height: "40px",
@@ -215,6 +230,7 @@ export default function SongCards() {
                   cursor: "pointer",
                 }}
               />
+            )}
           </div>
           <div style={{
               display: "flex",
@@ -227,7 +243,7 @@ export default function SongCards() {
               Popular Tracks by{" "}
             </Typography>
             <Typography sx={{ ml: "20px" }}>
-              Skihawant Singh
+            {selectedCard.artists[0].name}{" "}
             </Typography>
             <TableContainer sx={{ background: "#223c59" }}>
             <Table aria-label="simple table">
@@ -244,16 +260,20 @@ export default function SongCards() {
                 </TableHead>
               <TableBody>
                 {/* Need to map the songs to make the table */}
-                <TableRow sx={{
+                {selectedCard.songs.map((song, id) => (
+                    <TableRow
+                      key={song._id}
+                      onClick={() => handleSongClick(song, song._id)}
+                      sx={{
                         "&:last-child td, &:last-child th": { border: 0 },
                         color: "white",
                         cursor: "pointer",
                       }}>
-                    <TableCell
+                      <TableCell
                         component="th"
                         scope="row"
                         sx={{ color: "white", paddingLeft: "20px" }}>
-                        1
+                        {id + 1}
                       </TableCell>
                       <TableCell
                         sx={{
@@ -262,7 +282,7 @@ export default function SongCards() {
                           alignItems: "center",
                         }}>
                         <img
-                          src=""
+                          src={song.thumbnail}
                           alt="Thumbnail"
                           className="thumbnails"
                           style={{
@@ -272,12 +292,13 @@ export default function SongCards() {
                             objectFit: "cover",
                           }}
                         />{" "}
-                        Chand Chupaa badal me
+                        {song.title}
                       </TableCell>
                       <TableCell align="right" sx={style.container}>
-                        8/1/2007, 11:00:00 AM
+                        {dateCalculator(song.dateOfRelease)}
                       </TableCell>
-                </TableRow>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
             </TableContainer>
@@ -286,17 +307,21 @@ export default function SongCards() {
             Recommented Artists
           </Typography>
           <Box sx={{ pb: 5 }}>
-          <div
+            {musicList.map((data, index) => (
+              <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                   margin: "20px",
                   cursor: "pointer",
-                  "&:hover": { background: "rgb(28, 48, 71)" },
+                  "&:hover": { background: "rgb(28, 48, 71)"},
                 }}
-                >
+                key={index}
+                onClick={() => {
+                  handleArtistClick(data);
+                }}>
                 <img
-                  src=""
+                  src={data.data.image}
                   style={{
                     width: "50px",
                     height: "50px",
@@ -304,9 +329,10 @@ export default function SongCards() {
                   }}
                 />
                 <Typography variant="h6" fontWeight={600} ml={2}>
-                  Shukwendar Singh
+                  {data.data.name}
                 </Typography>
               </div>
+            ))}
           </Box>
           <Footer/>
         </div>
