@@ -1,0 +1,55 @@
+.songBar{
+    background-color: black;
+    height: 6rem;
+    width: 98.6%;
+    position: absolute;
+    z-index: 1;
+    left: 13px;
+    bottom: 0;
+    font-size: small;
+    align-items: center;
+    display: flex;
+    padding: 16px 8px 16px 8px;
+    margin-top: 8px;
+    justify-content: space-between;
+}
+
+audio {
+    background-color: #010101;
+    height: 38px;
+    width: 50%;
+}
+
+
+.audioSpotify{
+    width: 75%;
+}
+
+.songIcons{
+    width: 40px;
+    height: 20px;
+    padding-left: 10px;
+    color: rgb(164, 164, 164);
+}
+
+.unknownImg{
+    width:30px;
+    height:30px
+}
+
+.songIcons:hover{
+    color: white
+}
+
+@media(max-width:440px){
+    .audioSpotify{
+        width: 93%;
+    }
+    
+}
+@media(max-width:370px){
+    .unknownImg{
+        display: none;
+    }
+
+}

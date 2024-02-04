@@ -15,7 +15,8 @@ import  {useStateProvider} from "./components/utils/StateProvider"
 import Forget from './components/Login/Forget';
 import ArtistSong from './components/Card/ArtistSong';
 import LikedPage from './components/home/LikedPage';
-
+import SongBar from './components/Card/SongBar';
+import Signup from './components/sideBar/SignUp';
 
 export default function App() {
   const location = useLocation();
@@ -77,6 +78,7 @@ const Main=()=>{
         <SideBar/>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
           <Navbar/>
+          
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/search' element={<Search/>}/>
@@ -87,7 +89,7 @@ const Main=()=>{
               <Route path='/searchAll' element={<SearchAll/>}/>
               
             </Routes>
-          
+            {token ? <SongBar /> : <Signup />}
           
         </div>
         

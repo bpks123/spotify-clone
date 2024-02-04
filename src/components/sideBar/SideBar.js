@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Box from "@mui/material/Box";
 import { BiSolidHome, BiLibrary } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
@@ -6,14 +6,34 @@ import { FaPlus } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
 import "../../styles/App.css"
 import favorite from "./favorite.jpg";
+import { Link, useNavigate } from "react-router-dom";
+import { useStateProvider } from "../utils/StateProvider";
 
 export default function SideBar() {
-
-    
+  
+    const navigate = useNavigate();
     const flag = false;
     const [isHomeActive, setIsHomeActive] = useState(true);
     const [isSearchActive, setIsSearchActive] = useState(false);
-    
+    const [{ favorites }, dispatch] = useStateProvider();
+    const navigateToHome = () => {
+      setIsHomeActive(true);
+      setIsSearchActive(false);
+      dispatch({ type: "SET_SEARCH_CLICKED", payload: false });
+      navigate("/");
+    };
+
+    const navigateToSearch = () => {
+      setIsHomeActive(false);
+      setIsSearchActive(true);
+      dispatch({ type: "SET_SEARCH_CLICKED", payload: true });
+      navigate("/search");
+    };
+    const isMediumScreen = window.innerWidth;
+    useEffect(() => {
+      console.log(isMediumScreen);
+    }, [isMediumScreen]);
+
   return (
     <Box
       sx={{
@@ -34,7 +54,7 @@ export default function SideBar() {
         }}>
             {/* Box for Home */}
         <Box
-        //   onClick={navigateToHome}
+          onClick={navigateToHome}
           sx={{
             display: "flex",
             alignItems: "center",
@@ -49,7 +69,7 @@ export default function SideBar() {
         </Box>
         {/* Box for Search */}
         <Box
-        //   onClick={navigateToSearch}
+          onClick={navigateToSearch}
           sx={{
             display: "flex",
             alignItems: "center",
