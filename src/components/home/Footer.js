@@ -9,7 +9,7 @@ export default function Footer() {
     <footer style={{ margin: "auto", paddingBottom: "30px", paddingTop: "40px" }}>
       <Container>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-            {/* First div for flex */}
+            {/* First div for flex for understanding */}
           <div style={{ marginRight: "40px" }}>
             <Typography
               sx={{ mb: 1.5, fontSize: "19px", fontWeight: 800 }}
