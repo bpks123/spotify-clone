@@ -21,7 +21,7 @@ export default function AlbumSongs() {
 
   const handleSongClick = (song) => {
     dispatch({ type: "SET_SELECTED_SONG", payload: song });
-    navigate("/song");
+    navigate("/songs");
   };
   const dateCalculator = (str) => {
     var curDate = new Date(str);
@@ -55,18 +55,19 @@ export default function AlbumSongs() {
                 textAlign: "center",
                 fontFamily: "sans-serif",
               }}>
-              {/* {selectedCard.artists[0].name} are on top of the Hottest 50! */}
-              Ranveer Singh are on top of the Hottest 50!
+              {selectedCard.artists[0].name} are on top of the Hottest 50!
+              
             </Typography>
             <Typography
               variant="h6"
               sx={{ marginTop: "20px", textAlign: "center" }}>
-                Spotify music // 12,584,964 likes // 10 Songs
-              {/* Spotify . 34,134,343 likes . {selectedCard.songs.length}{" "}
-              {selectedCard.songs.length <= 1 ? "song" : "songs"} */}
+            
+              Spotify . 34,134,343 likes . {selectedCard.songs.length}{" "}
+              {selectedCard.songs.length <= 1 ? "song" : "songs"}
             </Typography>
             </div>
           </Box>
+          {/* Table of the songs for selected card lists */}
           <Box>
           <TableContainer
             component={Paper}
@@ -104,47 +105,56 @@ export default function AlbumSongs() {
                 </TableHead>
                 <TableBody>
                   {/* Map the album content need to updated */}
-                  <TableRow sx={{
+                  {selectedCard.songs.map((song, id) => (
+                  <TableRow
+                    key={song._id}
+                    onClick={() => handleSongClick(song)}
+                    sx={{
                       "&:last-child td, &:last-child th": { border: 0 },
                       color: "white",
                       cursor: "pointer",
-                    }}
-                    onClick={() => handleSongClick()}>
-                      <TableCell component="th"
+                    }}>
+                    <TableCell
+                      component="th"
                       scope="row"
                       sx={{ color: "white", paddingLeft: "20px" }}>
-                        1
-                      </TableCell>
-                      <TableCell align="right"
+                      {id + 1}
+                    </TableCell>
+                    <TableCell
+                      align="right"
                       sx={{ color: "white", display: "flex" }}>
-                        <div style={{ display: "flex", flex: "auto" }}>
+                      <div style={{ display: "flex", flex: "auto" }}>
                         <img
-                          src=""
+                          src={song.thumbnail}
                           alt="Thumbnail"
                           className="thumbnails"
                           style={{ marginRight: "10px" }}
                         />{" "}
-                        Badal ke Pado hai
+                        {song.title}
                       </div>
-                      </TableCell>
-                      <TableCell align="right"
+                    </TableCell>
+
+                    <TableCell
+                      align="right"
                       sx={{
                         display: "table-cell",
                         color: "white",
                         "@media(max-width:600px)": { display: "none" },
                       }}>
-                        Chak De India
-                      </TableCell>
-                      <TableCell align="right"
+                      {song.title}
+                    </TableCell>
+                    <TableCell
+                      align="right"
                       sx={{
                         display: "table-cell",
                         color: "white",
                         "@media(max-width:1100px)": { display: "none" },
                       }}
                       className="hide-on-desktop">
-                        12/12/2024
-                      </TableCell>
+                      {dateCalculator(song.dateOfRelease)}
+                    </TableCell>
                   </TableRow>
+                ))}
                 </TableBody>
 
               </Table>
