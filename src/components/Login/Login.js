@@ -38,7 +38,7 @@ export default function Login() {
         console.log(result.data.name)
         localStorage.setItem("jwtToken", result.token);
         localStorage.setItem("userName", result.data.name);
-        await navigate("/")
+        navigate("/")
         alert('Sing in succefully')
       }
       else{

@@ -61,7 +61,7 @@ const Main=()=>{
     const storedToken = localStorage.getItem("jwtToken");
 
     if (storedToken) {
-      dispatch({ type: "SET_NAME", payload: storedToken });
+      dispatch({ type: "SET_TOKEN", payload: storedToken });
     }
     const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
     if (

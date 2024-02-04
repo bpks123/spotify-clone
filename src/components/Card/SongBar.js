@@ -87,6 +87,12 @@ export default function SongBar() {
       });
     }
   };
+  const handlePlayAgain = () => {
+    if (selectedSong) {
+      audioRef.current.currentTime = 0; // Reset audio time to 0
+      playSong();
+    }
+  };
   
   return (
     <div className="songBar">
@@ -145,14 +151,14 @@ export default function SongBar() {
           <BiShuffle className="songIcons" />
           <IoMdSkipBackward className="songIcons" />
           {isPlaying ? (
-            <FaPause className="songIcons" />
+            <FaPause onClick={handlePlayPause} className="songIcons" />
           ) : (
-            <FaPlay className="songIcons" />
+            <FaPlay onClick={handlePlayPause} className="songIcons" />
           )}
-          <IoMdSkipForward className="songIcons" />
-          <BiRepeat className="songIcons" />
+          <IoMdSkipForward onClick={handleNext} className="songIcons" />
+          <BiRepeat onClick={handlePlayAgain} className="songIcons" />
         </div>
-        <audio  controls className="audioSpotify">
+        <audio ref={audioRef}  controls className="audioSpotify">
           <source src={audiourl} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
