@@ -2,6 +2,8 @@ import React from 'react'
 import { FaPlay } from "react-icons/fa";
 import "./Card.css"
 import {Link, useNavigate } from "react-router-dom";
+import { useStateProvider } from '../utils/StateProvider'
+
 import {
   Card,
   CardActionArea,
@@ -11,9 +13,10 @@ import {
 } from "@mui/material";
 
 export default function Cards({music}) {
+  const [, dispatch] = useStateProvider();
   const navigate=useNavigate()
   const handleCardClick = () => {
-    // dispatch({ type: "SET_SELECTED_CARD", payload: music });
+    dispatch({ type: "SET_SELECTED_CARD", payload: music });
     console.log(music);
     navigate("/album");
   };

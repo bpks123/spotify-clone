@@ -124,11 +124,11 @@ export default function SideBar() {
         </Box>
             {/* Create Playlist */}
         <div>
-          {/* {{favorites.length != 0 && localStorage.getItem("jwtToken") ? (}   */}
-          {localStorage.getItem("jwtToken") ? (
+          {/* Favorites song should be implemented once clicked in the favorite  */}
+          {favorites.length != 0 && localStorage.getItem("jwtToken") ? (
             <Box
               id="library2"
-            //   onClick={() => navigate("/liked-song")}
+              onClick={() => navigate("/liked-song")}
               sx={{ cursor: "pointer" }}>
               <img src={favorite} style={{ width: "30px", height: "30px" }} />
               <h5
