@@ -23,9 +23,9 @@ export default function Home() {
  async function Search(){
       try{
         const response= await fetch('https://academics.newtonschool.co/api/v1/music/album', {
-          headers: {
-            projectId: projectId,
-          }})
+        headers: {
+          projectId: projectId,
+        }})
         const result=await response.json()
         dispatch({ type: "SET_List", payload: result.data })
         setMusicList(result.data)

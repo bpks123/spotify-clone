@@ -18,6 +18,76 @@ export default function SongBar() {
   const [audiourl, setAudioUrl] = useState("");
   const [{ selectedCard, selectedSong, token }, dispatch] = useStateProvider();
 
+  useEffect(() => {
+    if (selectedSong) {
+      loadSong(selectedSong.audio_url); // Load the selected song
+    }
+  }, [selectedSong]);
+
+  const loadSong = (audioUrl) => {
+    if (audioRef.current && audioRef.current.src !== audioUrl && token) {
+      // Stop the currently playing audio (if any)
+      audioRef.current.pause();
+      audioRef.current.src = "";
+
+      // Load and play the new song
+      audioRef.current.src = audioUrl;
+      audioRef.current.play();
+      setAudioUrl(audioUrl);
+      setIsPlaying(true);
+    }
+  };
+  const audioRef = useRef(null);
+
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      pauseSong();
+    } else {
+      playSong();
+    }
+  };
+
+  const playSong = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const pauseSong = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+  const handlePrevious = () => {
+    if (selectedCard && selectedSong) {
+      let index = selectedCard.songs.findIndex((id) => {
+        return id._id === selectedSong._id;
+      });
+
+      selectedCard.songs.filter((id, ind) => {
+        if (ind === index - 1) {
+          dispatch({ type: "SET_SELECTED_SONG", payload: id });
+        }
+      });
+    }
+  };
+
+  const handleNext = () => {
+    if (selectedCard && selectedSong) {
+      let index = selectedCard.songs.findIndex((id) => {
+        return id._id === selectedSong._id;
+      });
+
+      selectedCard.songs.filter((id, ind) => {
+        if (ind === index + 1) {
+          dispatch({ type: "SET_SELECTED_SONG", payload: id });
+        }
+      });
+    }
+  };
+  
   return (
     <div className="songBar">
       {selectedSong? (

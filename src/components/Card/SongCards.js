@@ -26,7 +26,7 @@ export default function SongCards() {
     dispatch({ type: "SET_SELECTED_SONG", payload: song });
     dispatch({ type: "SET_SELECTED_ID", payload: id });
     if (token) {
-      navigate("/song");
+      navigate("/songs");
     } else {
       navigate("/login");
     }
