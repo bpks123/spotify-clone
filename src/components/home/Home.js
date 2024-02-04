@@ -51,7 +51,6 @@ export default function Home() {
     }
   }, [selectedCard]);
 
-  
   const displayedMusic = musicList.slice(1, 6);
   const displayedMusic_two = musicList.slice(6, 11);
   const displayedMusic_three = musicList.slice(15, 20);
