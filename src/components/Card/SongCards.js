@@ -60,7 +60,7 @@ export default function SongCards() {
     if (!token) {
       alert("Please Login");
     } else {
-      var favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
+      let favoritesData = JSON.parse(localStorage.getItem("favorites")) || [];
       const updatedSelectedSong = {
         ...selectedSong,
         color: favoritesData.some((item) => item._id === selectedSong._id)

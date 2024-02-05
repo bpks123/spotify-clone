@@ -22,6 +22,7 @@ export default function LikedPage() {
 
   const handleLikedSong =(song)=>{
     dispatch({ type: "SET_SELECTED_SONG", payload: song });
+    navigate('/songs')
 
   }
   return (

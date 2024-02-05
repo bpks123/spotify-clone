@@ -38,7 +38,7 @@ export default function Navbar() {
     dispatch({ type: "SET_TOKEN", payload: null });
     dispatch({ type: "ADD_FAVORITE", payload: [] });
     localStorage.removeItem("jwtToken");
-    localStorage.removeItem("username");
+    localStorage.removeItem("userName");
     localStorage.removeItem("favorites");
 
     navigate("/");
@@ -175,6 +175,10 @@ export default function Navbar() {
             />
           </div>
         )}
+        {token?(<div style={{fontSize:"25px",padding:"5px",background:"linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44)"}}>
+         Welcome {localStorage.getItem("userName")} to Spotify Music
+        </div>):""}
+        
         {token ? (
           <div>
             <Link
