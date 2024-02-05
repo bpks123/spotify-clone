@@ -18,21 +18,11 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const [{ searchClicked, token, name, searchSong }, dispatch] =
+  const [{searchClicked, token, name, searchSong }, dispatch] =
     useStateProvider();
-  const [searchQuery, setSearchQuery] = useState("");
   const [open, setOpen] = useState(false);
 
-  const handleChange = (e) => {
-    setSearchQuery(e.target.value);
-    console.log(e);
-  };
-  useEffect(() => {
-    console.log(searchSong);
-  }, [searchSong]);
-  const handleInput= async ()=>{
 
-  }
   const handleLogOut = () => {
     dispatch({ type: "SET_NAME", payload: null });
     dispatch({ type: "SET_TOKEN", payload: null });
@@ -162,20 +152,8 @@ export default function Navbar() {
             {sideList()}
           </Drawer>
         </div>
-        {searchClicked && (
-          <div className="searchBarSection">
-            <SearchIcon style={{ marginLeft: "10px", marginRight: "10px" }} />
-            <input
-              type="text"
-              id="searchBar"
-              placeholder="What do you want to listen to?"
-              value={searchQuery}
-              onChange={handleChange}
-              onKeyUp={(e) => handleInput(e)}
-            />
-          </div>
-        )}
-        {token?(<div style={{fontSize:"25px",padding:"5px",background:"linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44)"}}>
+        
+        {(token && !searchClicked)?(<div style={{fontSize:"25px",padding:"5px",background:"linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44)"}}>
          Welcome {localStorage.getItem("userName")} to Spotify Music
         </div>):""}
         

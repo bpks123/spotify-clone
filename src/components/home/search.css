@@ -1,0 +1,72 @@
+.searchPage{
+    position: relative;
+    width: 75%; 
+    z-index: -10; 
+    right: 0;
+    top: 0;
+    margin-left: 8px; 
+    display: flex;
+    flex-direction: column;
+}
+.searchBarSection{
+    background: #242424;
+    border-radius: 30px;
+    width: 30%;
+    display: flex;
+    align-items:center;
+    height: 45px;
+    margin-left: 30%;
+    position: absolute;
+    margin-top: -5%;
+}
+#searchBar:focus{
+    border: none;
+}
+.searchBody{
+    background-color: #242424;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex: 1;
+    max-height: calc(93vh - 80px); /* Adjust as needed */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+}
+
+.searchBody::-webkit-scrollbar {
+    width: 1px;
+  transition: opacity 0.3s ease;
+  }
+
+  .searchBody:hover::-webkit-scrollbar {
+    opacity: 1;
+  }
+
+  .searchBody::-webkit-scrollbar-thumb {
+    background-color: #6b6b6b;
+    border-radius: 4px;
+  }
+  
+  .searchBody::-webkit-scrollbar-track {
+    background-color: #2d2d2d;
+    border-radius: 4px;
+  }
+.item{
+    text-align: center;
+    position: relative;
+}
+.imageFix{
+    height: 180px;
+    width: 160px;
+    border-radius: 5px;
+}
+.item:hover{
+    transform: scale(1.02);
+    cursor: pointer;
+}
