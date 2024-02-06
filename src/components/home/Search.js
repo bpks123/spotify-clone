@@ -16,6 +16,9 @@ import Footer from "./Footer"
 import SearchIcon from "@mui/icons-material/Search";
 import romantic from "./Romantic.jpg"
 import newrlease from "./newRelease.jpg"
+import hindi from "./bollywood.webp"
+import panjabi from "./punjabi.jpg"
+
 export default function Search() {
   const [{searchClicked, searchSong }, dispatch] = useStateProvider();
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,13 +53,14 @@ useEffect(()=>{
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
-    // console.log(e);
   };
 useEffect(() => {
     console.log(searchSong);
   }, [searchSong]);
-  const handleInput= async ()=>{
-
+  const handleInput= async (e)=>{
+    if(e.key==="Enter"){
+      console.log("You pressede endter")
+    }
   }
   const handleCardClick = () => {
     dispatch({ type: "SET_SELECTED_SONG", payload: searchSong });
@@ -90,11 +94,11 @@ useEffect(() => {
             </div>
             <div className='item' onClick={()=>backToSearch()}>
               <h1 style={{position:"absolute"}}>Hindi</h1>
-              <img src={romantic} alt="romanticImg" className='imageFix'/>
+              <img src={hindi} alt="bollywood" className='imageFix'/>
             </div>
             <div className='item' onClick={()=>backToSearch()}>
               <h1 style={{position:"absolute"}}>Panjabi</h1>
-              <img src={newrlease} className='imageFix'/>
+              <img src={panjabi} className='imageFix'/>
             </div>
             <Footer/>
           </div>          
