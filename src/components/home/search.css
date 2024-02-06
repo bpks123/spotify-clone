@@ -22,6 +22,12 @@
 #searchBar:focus{
     border: none;
 }
+.backButton{
+  background-color: gray;
+  border-radius: 5px;
+  padding: 5px;
+  text-transform: uppercase;
+}
 .searchBody{
     background-color: #242424;
     margin-left: 1rem;
