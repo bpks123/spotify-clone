@@ -18,8 +18,10 @@ import newrlease from "./newRelease.jpg"
 import hindi from "./bollywood.webp"
 import panjabi from "./punjabi.jpg"
 
+import { useNavigate } from "react-router-dom";
 export default function Search() {
-  const [{searchSong }, dispatch] = useStateProvider();
+  const navigate = useNavigate();
+  const [{searchSong,token }, dispatch] = useStateProvider();
   const [searchQuery, setSearchQuery] = useState("");
   const [romanticMusic, setRomanticMusic] = useState([]);
   const [musicList, setMusicList] = useState([]);
@@ -81,7 +83,12 @@ export default function Search() {
     }
   }
   const handleCardClick = () => {
-    dispatch({ type: "SET_SELECTED_SONG", payload: searchSong });
+    if(token){
+      dispatch({ type: "SET_SELECTED_SONG", payload: searchSong });
+    }
+    else{
+      navigate('/login')
+    }
   };
   function backToSearch(){
     setCheck(!check)
