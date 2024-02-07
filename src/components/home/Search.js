@@ -10,7 +10,6 @@ import "./search.css"
 import "./home.css"
 import Cards from '../Card/Cards';
 import { FaGreaterThan, FaLessThan, FaPlay } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
 import { useStateProvider } from '../utils/StateProvider';
 import Footer from "./Footer"
 import SearchIcon from "@mui/icons-material/Search";
@@ -20,7 +19,7 @@ import hindi from "./bollywood.webp"
 import panjabi from "./punjabi.jpg"
 
 export default function Search() {
-  const [{searchClicked, searchSong }, dispatch] = useStateProvider();
+  const [{searchSong }, dispatch] = useStateProvider();
   const [searchQuery, setSearchQuery] = useState("");
   const [romanticMusic, setRomanticMusic] = useState([]);
   const [musicList, setMusicList] = useState([]);
@@ -71,6 +70,7 @@ export default function Search() {
           }})
           const result=await response.json();
           const songData=result.data[0]
+          
           console.log(songData)
           dispatch({ type: "SET_SEARCH_SONG", payload: songData })
       }
@@ -103,9 +103,9 @@ export default function Search() {
             />
 
           </div>
-          {searchSong?(<div className="card " style={{ margin: "auto" }}>
+          {searchSong?(<div className="card" style={{ margin: "auto" }}>
           <Card
-            sx={{ maxWidth: 160, ml: "40px" }}
+            sx={{ maxWidth: 160, ml: "40px", mt:"10px"}}
             onClick={() => {
               handleCardClick();
             }}>
