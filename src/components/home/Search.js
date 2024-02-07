@@ -24,7 +24,7 @@ export default function Search() {
   const [searchQuery, setSearchQuery] = useState("");
   const [romanticMusic, setRomanticMusic] = useState([]);
   const [musicList, setMusicList] = useState([]);
-  const [check,setCheck]=useState(false)
+  const [check,setCheck]=useState(true)
   const projectId="c91eotf57uop";
 
   async function Search(){
@@ -47,19 +47,37 @@ export default function Search() {
     }
     
 }
-useEffect(()=>{
-  Search()
-},[])
+  useEffect(()=>{
+    Search()
+  },[])
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
-useEffect(() => {
-    console.log(searchSong);
+  useEffect(() => {
+    console.log("You have searched song==> "+searchSong);
   }, [searchSong]);
+
   const handleInput= async (e)=>{
     if(e.key==="Enter"){
-      console.log("You pressede endter")
+      if(searchQuery.length===0){
+        dispatch({ type: "SET_SEARCH_SONG", payload: null })
+        return
+      }
+      try{
+        const response=await fetch(`https://academics.newtonschool.co/api/v1/music/song?search={"title":"${searchQuery}"}`,{
+          headers: {
+            projectId: projectId,
+          }})
+          const result=await response.json();
+          const songData=result.data[0]
+          console.log(songData)
+          dispatch({ type: "SET_SEARCH_SONG", payload: songData })
+      }
+      catch(error){
+        console.log(error)
+      }
+
     }
   }
   const handleCardClick = () => {
@@ -70,6 +88,7 @@ useEffect(() => {
   }
   return (
     <>
+    
     {check?(
       <div className='homePage'>
           <div className="searchBarSection">
@@ -82,7 +101,31 @@ useEffect(() => {
               onChange={handleChange}
               onKeyUp={(e) => handleInput(e)}
             />
+
           </div>
+          {searchSong?(<div className="card " style={{ margin: "auto" }}>
+          <Card
+            sx={{ maxWidth: 160, ml: "40px" }}
+            onClick={() => {
+              handleCardClick();
+            }}>
+            <CardActionArea sx={{ width: "90%" }}>
+              <CardMedia
+                component="img"
+                height="129"
+                width="100"
+                image={searchSong?.thumbnail}
+                alt="green iguana"
+              />
+              <button className="play_btn">
+                <FaPlay className="buttonIcon" />
+              </button>
+              <CardContent sx={{ background: "#000000", color: "#ffffff" }}>
+                <h3 className="title">{searchSong?.title}</h3>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          </div>):(
             <div className='searchBody'>
             <div className='item' onClick={()=>backToSearch()}>
               <h1 style={{position:"absolute"}}>Romantic</h1>
@@ -101,7 +144,12 @@ useEffect(() => {
               <img src={panjabi} className='imageFix'/>
             </div>
             <Footer/>
-          </div>          
+          </div>   
+          )
+
+    }
+
+                   
     </div>
     ):(
       <div style={{
