@@ -198,24 +198,11 @@ export default function SideBar() {
       </Box>
       <div id="footer">
         <div id="sideBar_footer">
-          <a className="footer_links" href="/forgot">
-            Change Password
-          </a>
-          <a className="footer_links" href="#">
-            Privacy Center
-          </a>
-          <a className="footer_links" href="#">
-            Privacy Policy
-          </a>
-          <a className="footer_links" href="#">
-            Cookies
-          </a>
-          <a className="footer_links" href="#">
-            About Ads
-          </a>
-          <a className="footer_links" href="#">
-            Accessibility
-          </a>
+          <Link to="/forgot">Change Password</Link>
+          <Link>Privacy Center</Link>
+          <Link>Privacy Policy</Link>
+          <Link>Cookies</Link>
+          <Link>Accessibility</Link>
         </div>
         <div className="language">
           <button className=" languageButton">
@@ -224,7 +211,6 @@ export default function SideBar() {
           </button>
         </div>
       </div>
-      {/* {flag ? <SignUp /> : <SongBar />} */}
     </Box>
   )
 }

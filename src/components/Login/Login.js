@@ -31,7 +31,7 @@ export default function Login() {
         headers:headersList,
         body:JSON.stringify({...user})
       })
-      console.log(response)
+      // console.log(response)
       if (response.status === 200){
         let result= await response.json()
         console.log(result)
@@ -42,7 +42,9 @@ export default function Login() {
         alert('Sing in succefully')
       }
       else{
-        alert('Sing in Failed')
+        let result= await response.json()
+        const message=result.message
+        alert(message)
       }
 
     }
