@@ -12,7 +12,7 @@ export default function SearchAll() {
 
   async function Search(){
     try{
-      const response= await fetch('https://academics.newtonschool.co/api/v1/music/album', {
+      const response= await fetch('https://academics.newtonschool.co/api/v1/music/album?limit=50', {
         headers: {
           projectId: projectId,
         }})

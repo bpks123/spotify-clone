@@ -17,6 +17,7 @@ import ArtistSong from './components/Card/ArtistSong';
 import LikedPage from './components/home/LikedPage';
 import SongBar from './components/Card/SongBar';
 import Signup from './components/sideBar/SignUp';
+import SearchAllSongs from './components/home/SearchAllSongs';
 
 export default function App() {
   const location = useLocation();
@@ -87,6 +88,7 @@ const Main=()=>{
               <Route path="/artist" element={selectedArtist ? <ArtistSong /> : <Home />}/>
               <Route path="/liked-song" element={favorites ? <LikedPage /> : <Home />}/>
               <Route path='/searchAll' element={<SearchAll/>}/>
+              <Route path='/allSongs' element={<SearchAllSongs/>}/>
               
             </Routes>
             {token ? <SongBar /> : <Signup />}

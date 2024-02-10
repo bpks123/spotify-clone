@@ -13,10 +13,14 @@ import Footer from "./Footer.js"
 import favoriteimg from "./favoriteimg.jpg";
 import Cards from '../Card/Cards.js';
 import { useStateProvider } from '../utils/StateProvider.js';
+import SongCard from '../Card/SongCard.js';
+
+
 
 export default function Home() {
   const navigate=useNavigate()
   const [musicList, setMusicList] = useState([])
+  const [songList,setSongList]=useState([])
   const [{ selectedCard, favorites, list }, dispatch] = useStateProvider();
   const projectId="c91eotf57uop";
 
@@ -37,8 +41,25 @@ export default function Home() {
       }
       
   }
+  async function songSearch(){
+    try{
+      const response= await fetch('https://academics.newtonschool.co/api/v1/music/song?limit=50', {
+      headers: {
+        projectId: projectId,
+      }})
+      const result=await response.json()
+      setSongList(result.data)
+      console.log("Song list")
+      console.log(songList)
+      
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
   useEffect(()=>{
     Search()
+    songSearch()
   },[])
 
   useEffect(() => {
@@ -52,7 +73,7 @@ export default function Home() {
   }, [selectedCard]);
 
   const displayedMusic = musicList.slice(1, 6);
-  const displayedMusic_two = musicList.slice(6, 11);
+  const displayedMusic_two = songList.slice(30, 35);
   const displayedMusic_three = musicList.slice(15, 20);
   const width = window.screen.width;
 
@@ -94,14 +115,14 @@ export default function Home() {
           ))}
         </div>
         <div className="sections">
-          <span className="sectionHeading">Songs</span>
-          <Link to="/searchall" style={{ color: "white", paddingRight: "15px" }}>
+          <span className="sectionHeading">All Songs</span>
+          <Link to="/allSongs" style={{ color: "white", paddingRight: "15px" }}>
             Show All
           </Link>
         </div>
         <div className="sectionGrid">
         {displayedMusic_two.map((music) => (
-            <Cards key={music._id} music={music} />
+            <SongCard key={music._id} song={music} />
           ))}
         </div>
         <div className="sections">
