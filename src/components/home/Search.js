@@ -129,6 +129,7 @@ export default function Search() {
             
             
             <button className='backButton'  onClick={()=>searchMenu()}>&larr; Back To Search Menu</button>
+            <button className='back'  onClick={()=>searchMenu()}>&larr; Back</button>
             <div className="homeBody"
           style={{
             display: "flex",
