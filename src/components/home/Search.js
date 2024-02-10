@@ -18,6 +18,7 @@ import newrlease from "./newRelease.jpg"
 import hindi from "./bollywood.webp"
 import trending from "./trending.jpg"
 import top20 from "./top-20.png"
+import loading from "./loading.gif"
 import SongCard from '../Card/SongCard';
 import { useNavigate } from "react-router-dom";
 export default function Search() {
@@ -27,6 +28,7 @@ export default function Search() {
   const [romanticMusic, setRomanticMusic] = useState([]);
   const [musicList, setMusicList] = useState([]);
   const [allsearchSongs, setAllsearchSongs]=useState([]);
+  const [isloading,setIsloading]=useState(true)
   const [check,setCheck]=useState(true)
   const projectId="c91eotf57uop"; 
 
@@ -65,25 +67,38 @@ export default function Search() {
   }
   function backToSearch(){
     setCheck(!check)
+    setIsloading(true)
   }
   const songSearch= async (input)=>{
     console.log(input);
      let url;
-    if(input == "Trending songs"){
-      url = `https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Trending songs"}`;
-    }
-    else if(input == "Top 50 of this month"){
-      url = `https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Top 50 of this month"}`;
-    }
-    else if(input == "Top 20 of this week"){
-      url = `https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Top 20 of this week"}`;
-    }
-    else if(input=="romantic"){
+     if(input=="romantic"){
+      //search by mood
       url=`https://academics.newtonschool.co/api/v1/music/song?filter={"mood":"romantic"}`;
-    }
-    else if(input=="new"){
+     }
+     else if(input=="new"){
+      //sort the data with release date
       url=`https://academics.newtonschool.co/api/v1/music/song?sort={"release":1}`
-    }
+     }
+     else{
+      //convert the input into string, coming data is in form of object
+      url=`https://academics.newtonschool.co/api/v1/music/song?filter={"featured":${JSON.stringify(input)}}`
+     }
+    // if(input == "Trending songs"){
+    //   url = `https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Trending songs"}`;
+    // }
+    // else if(input == "Top 50 of this month"){
+    //   url = `https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Top 50 of this month"}`;
+    // }
+    // else if(input == "Top 20 of this week"){
+    //   url = `https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Top 20 of this week"}`;
+    // }
+    // else if(input=="romantic"){
+    //   url=`https://academics.newtonschool.co/api/v1/music/song?filter={"mood":"romantic"}`;
+    // }
+    // else if(input=="new"){
+    //   url=`https://academics.newtonschool.co/api/v1/music/song?sort={"release":1}`
+    // }
     try{
       const response= await fetch(url, {
         headers: {
@@ -95,6 +110,7 @@ export default function Search() {
       console.log('Music List')
       console.log(musicList)
       setCheck(!check)
+      setIsloading(false)
       
     }
     catch(error){
@@ -182,7 +198,8 @@ export default function Search() {
         top: 0,
       }}>
         <button onClick={()=>backToSearch()} className='backButton'>&larr; Back to Search</button>
-        <div
+        {isloading?<img src={loading}/>:(
+          <div
           className="homeBody"
           style={{
             display: "flex",
@@ -194,8 +211,9 @@ export default function Search() {
             {musicList.map((music) => (
             <SongCard song={music} key={music._id} />
           ))}
-            
-            </div> 
+          </div>
+        )}
+         
       </div>
     )}
    </> 
