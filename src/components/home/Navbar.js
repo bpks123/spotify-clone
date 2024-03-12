@@ -15,6 +15,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useStateProvider } from "../utils/StateProvider";
 import SearchIcon from "@mui/icons-material/Search";
+import spotifylogo from '../../assests/Spotify_Logo_RGB_Green.png'
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -124,10 +125,6 @@ export default function Navbar() {
     <div>
       <div className="navBar">
       <div id="navBarId">
-          {/* <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-            <FaLessThan className="backNForward" />
-            <FaGreaterThan className="backNForward" />
-          </div> */}
           <AppBar
             position="static"
             sx={{
@@ -138,6 +135,7 @@ export default function Navbar() {
                 display: "flex",
               },
             }}>
+              <img src={spotifylogo} style={{width:'100px',marginBottom:'1%'}}/>
             <Toolbar>
               <IconButton
                 edge="start"
@@ -149,8 +147,10 @@ export default function Navbar() {
             </Toolbar>
           </AppBar>
           <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-            {sideList()}
+            {sideList()}  
           </Drawer>
+        
+
         </div>
         
         {(token && !searchClicked)?(<div style={{fontSize:"25px",padding:"5px",background:"linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44)"}}>

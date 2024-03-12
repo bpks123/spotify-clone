@@ -18,6 +18,7 @@ import LikedPage from './components/home/LikedPage';
 import SongBar from './components/Card/SongBar';
 import Signup from './components/sideBar/SignUp';
 import SearchAllSongs from './components/home/SearchAllSongs';
+import Playlist from './components/sideBar/Playlist';
 
 export default function App() {
   const location = useLocation();
@@ -42,7 +43,9 @@ export default function App() {
         <Premium />
       ) : location.pathname === "/forgot" ? (
         <Forget />
-      ) : (
+      ):location.pathname==="/playlist"?( 
+        <Playlist/>
+      ): (
         <Main />
       )}
       </>

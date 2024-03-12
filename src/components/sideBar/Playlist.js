@@ -1,8 +1,9 @@
-import React ,{useState} from 'react'
+import React, { useState } from 'react'
 import upcoming from '../../assests/upcoming.jpg'
-function Forget() {
+export default function Playlist() {
   const [getWidth,setWidth]=useState(window.innerWidth-30)
   const [getHeight,setHeight]=useState(window.innerHeight-25)
+
   return (
     <>
       <img src={upcoming}
@@ -12,5 +13,3 @@ function Forget() {
     </>
   )
 }
-
-export default Forget

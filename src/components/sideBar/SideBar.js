@@ -8,11 +8,11 @@ import "../../styles/App.css"
 import favorite from "./favorite.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useStateProvider } from "../utils/StateProvider";
+import spotifylogo from '../../assests/Spotify_Logo_RGB_Green.png'
 
 export default function SideBar() {
   
     const navigate = useNavigate();
-    const flag = false;
     const [isHomeActive, setIsHomeActive] = useState(true);
     const [isSearchActive, setIsSearchActive] = useState(false);
     const [{ favorites }, dispatch] = useStateProvider();
@@ -44,6 +44,7 @@ export default function SideBar() {
         mr: 1,
         height: "100%",
       }}>
+        <img src={spotifylogo} style={{width:'100px',marginBottom:'1%'}}/>
         <Box
         sx={{
           backgroundColor: "#121212",
@@ -163,7 +164,7 @@ export default function SideBar() {
                   </span>
                 </div>
 
-                <button className="button">Create playlist</button>
+                <button className="button" onClick={()=>navigate('/playlist')}>Create playlist</button>
               </Box>
               {/* Browse Podcast */}
               <Box
@@ -190,7 +191,7 @@ export default function SideBar() {
                     We'll keep you updated on new episodes
                   </span>
                 </div>
-                <button className="button">Browse Podcast</button>
+                <button className="button" onClick={()=>navigate('/playlist')}>Browse Podcast</button>
               </Box>
             </Box>
           )}

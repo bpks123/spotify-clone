@@ -35,7 +35,7 @@ export default function LikedPage() {
         }}>
           <Box className="mainSection">
           <Typography variant="h4" sx={{ mt: "85px" }}>
-            Favourite Songs
+            Favorite Songs
           </Typography>
           <img
             src={favoriteimg}
