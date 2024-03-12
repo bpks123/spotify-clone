@@ -15,7 +15,7 @@ export default function SideBar() {
     const navigate = useNavigate();
     const [isHomeActive, setIsHomeActive] = useState(true);
     const [isSearchActive, setIsSearchActive] = useState(false);
-    const [{ favorites }, dispatch] = useStateProvider();
+    const [{token, favorites }, dispatch] = useStateProvider();
     const navigateToHome = () => {
       setIsHomeActive(true);
       setIsSearchActive(false);
@@ -199,7 +199,7 @@ export default function SideBar() {
       </Box>
       <div id="footer">
         <div id="sideBar_footer">
-          <Link to="/forgot">Change Password</Link>
+          {token && <Link to="/forgot">Change Password</Link>}
           <Link>Privacy Center</Link>
           <Link>Privacy Policy</Link>
           <Link>Cookies</Link>
