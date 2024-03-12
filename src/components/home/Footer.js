@@ -21,15 +21,15 @@ export default function Footer() {
               sx={{ mb: 1.5, display: "flex", flexDirection: "column" }}
               variant="body2"
               align="center">
-              <a className="footeras" href="/about">
+              <a className="footeras" href="/">
                 About
               </a>
               <br />
-              <a className="footeras" href="/jobs">
+              <a className="footeras" href="/">
                 Jobs
               </a>
               <br />
-              <a className="footeras" href="/for-the-record">
+              <a className="footeras" href="/">
                 For the Record
               </a>
             </Typography>
@@ -49,19 +49,19 @@ export default function Footer() {
               {/* Need to update */}
 
               <br />
-              <a className="footeras" href="/developers">
+              <a className="footeras" href="/">
                 Developers
               </a>
               <br />
-              <a className="footeras" href="/advertising">
+              <a className="footeras" href="/">
                 Advertising
               </a>
               <br />
-              <a className="footeras" href="/investors">
+              <a className="footeras" href="/">
                 Investors
               </a>
               <br />
-              <a className="footeras" href="/vendors">
+              <a className="footeras" href="/">
                 Vendors
               </a>
             </Typography>
@@ -78,11 +78,11 @@ export default function Footer() {
               sx={{ mb: 1.5, display: "flex", flexDirection: "column" }}
               variant="body2"
               align="center">
-              <a className="footeras" href="/for-artists">
+              <a className="footeras" href="/">
                 For Artists
               </a>
               <br />
-              <a className="footeras" href="/free-mobile-app">
+              <a className="footeras" href="/">
                 Free Mobile App
               </a>
             </Typography>
