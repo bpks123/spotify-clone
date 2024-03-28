@@ -19,7 +19,7 @@ import SongBar from './components/Card/SongBar';
 import Signup from './components/sideBar/SignUp';
 import SearchAllSongs from './components/home/SearchAllSongs';
 import Playlist from './components/sideBar/Playlist';
-
+import ComingSoon from './components/home/ComingSoon';
 export default function App() {
   const location = useLocation();
   const [{ selectedCard, selectedSong, selectedArtist, token }, dispatch] = useStateProvider();
@@ -92,6 +92,7 @@ const Main=()=>{
               <Route path="/liked-song" element={favorites ? <LikedPage /> : <Home />}/>
               <Route path='/searchAll' element={<SearchAll/>}/>
               <Route path='/allSongs' element={<SearchAllSongs/>}/>
+              <Route path='/comingsoon' element={<ComingSoon/>}/>
               
             </Routes>
             {token ? <SongBar /> : <Signup />}

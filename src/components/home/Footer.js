@@ -2,7 +2,7 @@ import React from 'react'
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import "./home.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -21,17 +21,17 @@ export default function Footer() {
               sx={{ mb: 1.5, display: "flex", flexDirection: "column" }}
               variant="body2"
               align="center">
-              <a className="footeras" href="/">
+              <Link className="footeras" to={'/comingsoon'}>
                 About
-              </a>
+              </Link>
               <br />
-              <a className="footeras" href="/">
+              <Link className="footeras" to={'/comingsoon'}>
                 Jobs
-              </a>
+              </Link>
               <br />
-              <a className="footeras" href="/">
+              <Link className="footeras" to={'/comingsoon'}>
                 For the Record
-              </a>
+              </Link>
             </Typography>
           </div>
           {/* Second div for flex */}
@@ -48,22 +48,21 @@ export default function Footer() {
               align="center">
               {/* Need to update */}
 
+              <Link className="footeras" to={'/comingsoon'}>
+                Devlopers
+              </Link>
               <br />
-              <a className="footeras" href="/">
-                Developers
-              </a>
-              <br />
-              <a className="footeras" href="/">
+              <Link className="footeras" to={'/comingsoon'}>
                 Advertising
-              </a>
+              </Link>
               <br />
-              <a className="footeras" href="/">
+              <Link className="footeras" to={'/comingsoon'}>
                 Investors
-              </a>
+              </Link>
               <br />
-              <a className="footeras" href="/">
+              <Link className="footeras" to={'/comingsoon'}>
                 Vendors
-              </a>
+              </Link>
             </Typography>
           </div>
           {/* Third div for div */}
@@ -78,13 +77,13 @@ export default function Footer() {
               sx={{ mb: 1.5, display: "flex", flexDirection: "column" }}
               variant="body2"
               align="center">
-              <a className="footeras" href="/">
+              <Link className="footeras" to={'/comingsoon'}>
                 For Artists
-              </a>
+              </Link>
               <br />
-              <a className="footeras" href="/">
-                Free Mobile App
-              </a>
+              <Link className="footeras" to={'/comingsoon'}>
+                Free Mobile Apps
+              </Link>
             </Typography>
           </div>
         </div>

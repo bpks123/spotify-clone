@@ -200,10 +200,10 @@ export default function SideBar() {
       <div id="footer">
         <div id="sideBar_footer">
           {token && <Link to="/forgot">Change Password</Link>}
-          <Link>Privacy Center</Link>
-          <Link>Privacy Policy</Link>
-          <Link>Cookies</Link>
-          <Link>Accessibility</Link>
+          <Link to={'/comingsoon'}>About</Link>
+          <Link to={'/comingsoon'}>Privacy Policy</Link>
+          <Link to={'/comingsoon'}>Cookies</Link>
+          <Link to={'/comingsoon'}>Accessibility</Link>
         </div>
         <div className="language">
           <button className=" languageButton">

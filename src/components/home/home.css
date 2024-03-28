@@ -23,16 +23,6 @@
     
 }
 
-@media screen and (max-width: 711px) {
-  .homeBody{
-    margin-left: 0;
-  }
-}
-@media screen and (max-width: 500px) {
-  #footercontent{
-    display: none;
-  }
-}
 
 .homeBody::-webkit-scrollbar {
     width: 1px;
@@ -108,4 +98,19 @@ transition: opacity 0.3s ease;
   color: white;
   margin-top: 10px;
   font-size: 16px;
+}
+@media screen and (max-width: 711px) {
+  .homeBody{
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 500px) {
+  #footercontent{
+    display: none;
+  }
+  .sectionGrid{
+    /* justify-content: left; */
+    gap: 7px;
+  }
+  
 }

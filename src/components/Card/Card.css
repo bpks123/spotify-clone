@@ -76,6 +76,11 @@ h3.title , p.description {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+@media screen and (max-width: 500px) {
+    .card{
+        width: 155px;
+        height: 200px;
+    }
+}
 
 

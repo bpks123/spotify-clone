@@ -2,7 +2,6 @@ import React,{ useEffect, useState } from 'react'
 import {Link,useNavigate } from "react-router-dom"
 import Cards from '../Card/Cards'
 import { useStateProvider } from '../utils/StateProvider';
-
 export default function SearchAll() {
   
   const navigate = useNavigate();
@@ -50,6 +49,7 @@ useEffect(() => {
           justifyContent: "space-evenly",
           alignItems: "center",
           gap: "20px",
+          
         }}>
           {musicList.map((music) => (
           <Cards music={music} key={music._id} />

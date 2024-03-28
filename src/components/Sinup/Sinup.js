@@ -47,39 +47,56 @@ export default function Sinup() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    try{
-      const user={
-        name:username,
-        email:email,
-        password:password,
-        appType:"music",
+    if(!email.endsWith('@gmail.com')){
+      alert('Please put the valid email!')
+    }
+    else if(password.length<5){
+      alert('Password Must be greater than 4 digit!')
+    }
+    else if(username.length<3){
+      alert('UserName must be 3 digit or greater!')
+    }
+    else if(isNaN(year) || year>2024 || year<1800
+     || isNaN(month) || month<0 || month>12
+      || isNaN(day) || day<0 || day>30){
+        alert('Plese provide the correct DoB! eg. 2012-12-05')
       }
-      let response= await fetch("https://academics.newtonschool.co/api/v1/user/signup",{
-        method:'POST',
-        headers:headersList,
-        body:JSON.stringify({...user})
-      })
-      if (response.status === 201){
-        let result=await response.json()
-        console.log(result)
-        console.log(result.data)
-        setUserData(response);
-        // console.log(userData);
-        alert('Sing up succefully')
-        setTimeout(()=>{
-          navigate("/login")
-        },2000)
-      }else{
-        alert("sign up failed")
-      }
-      
-      
-      
 
+    else{
+      try{
+        const user={
+          name:username,
+          email:email,
+          password:password,
+          appType:"music",
+        }
+        let response= await fetch("https://academics.newtonschool.co/api/v1/user/signup",{
+          method:'POST',
+          headers:headersList,
+          body:JSON.stringify({...user})
+        })
+        if(response.status===403){
+          alert('User already Exists!')
+        }
+        if (response.status === 201){
+          let result=await response.json()
+          console.log(result)
+          console.log(result.data)
+          setUserData(response);
+          // console.log(userData);
+          alert('Sing up succefully')
+          setTimeout(()=>{
+            navigate("/login")
+          },2000)
+        }else{
+          alert("sign up failed")
+        }
+      }
+      catch(error){
+        alert(error)      
+      }
     }
-    catch(error){
-      alert(error)      
-    }
+    
   };
   const navigate = useNavigate();
   const projectId="c91eotf57uop";
@@ -141,6 +158,8 @@ export default function Sinup() {
                 type="password"
                 id="password"
                 name="password"
+                maxLength='8'
+                minLength='5'
                 placeholder="Password is hidden"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -215,7 +234,7 @@ export default function Sinup() {
                 <MenuItem value="other">Other</MenuItem>
               </Select>
             </FormControl>
-            <Box class="checkbox-container">
+            <Box className="checkbox-container">
               <input
                 type="checkbox"
                 id="marketing"

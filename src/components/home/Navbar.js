@@ -135,7 +135,7 @@ export default function Navbar() {
                 display: "flex",
               },
             }}>
-              <img src={spotifylogo} style={{width:'100px',marginBottom:'1%'}}/>
+              <img src={spotifylogo} style={{width:'100px',marginBottom:'1%'}} onClick={()=>navigate('/')}/>
             <Toolbar>
               <IconButton
                 edge="start"
@@ -153,7 +153,7 @@ export default function Navbar() {
 
         </div>
         
-        {(token && !searchClicked)?(<div style={{fontSize:"25px",padding:"5px",background:"linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44)"}}>
+        {(token && !searchClicked)?(<div className="welcome-text">
          Welcome {localStorage.getItem("userName")} to Spotify Music
         </div>):""}
         
