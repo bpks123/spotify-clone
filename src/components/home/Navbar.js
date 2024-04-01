@@ -25,7 +25,13 @@ export default function Navbar() {
   const userInfomation=localStorage.getItem("userName")
   const [userInfo,setUserInfo]=useState(userInfomation)
   const [flag,setFlag]=useState(false)
-
+  useEffect(()=>{
+    const intervalTime=setInterval(()=>{
+      setFlag((prevFlag) => !prevFlag)
+    },1000)
+    return()=>clearInterval(intervalTime)
+  },[])
+  
   
 
   const handleLogOut = () => {

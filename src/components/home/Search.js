@@ -154,9 +154,9 @@ export default function Search() {
             alignItems: "center",
             gap: "20px",
           }}>
-            {allsearchSongs.map((music)=>(
+            {allsearchSongs?allsearchSongs.map((music)=>(
               <SongCard song={music} key={music._id}/>
-            ))}
+            )):'Soory! No songs found. Try Again!!!'}
             </div>
           </div>
           ):(
