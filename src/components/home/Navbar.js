@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -42,7 +44,7 @@ export default function Navbar() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("userName");
     localStorage.removeItem("favorites");
-
+    toast.success("Successfully logout!")
     navigate("/");
   };
   const toggleDrawer = (isOpen) => (event) => {

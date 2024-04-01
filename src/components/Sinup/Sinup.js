@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -48,18 +50,24 @@ export default function Sinup() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     if(!email.endsWith('@gmail.com')){
-      alert('Please put the valid email!')
+      toast.error('Please enter valid email!')
+      // alert('Please put the valid email!')
     }
     else if(password.length<5){
-      alert('Password Must be greater than 4 digit!')
+      toast.error("Password must be greater than 4 digit!")
+      // alert('Password Must be greater than 4 digit!')
     }
     else if(username.length<3){
-      alert('UserName must be 3 digit or greater!')
+      // alert('UserName must be 3 digit or greater!')
+      toast.error("UserName must be 3 digit or greater!")
+
     }
     else if(isNaN(year) || year>2024 || year<1800
      || isNaN(month) || month<0 || month>12
       || isNaN(day) || day<0 || day>30){
-        alert('Plese provide the correct DoB! eg. 2012-12-05')
+        // alert('Plese provide the correct DoB! eg. 2012-12-05')
+        toast.error("Plese provide the correct DoB! eg. 2012-12-05!")
+
       }
 
     else{
@@ -76,7 +84,9 @@ export default function Sinup() {
           body:JSON.stringify({...user})
         })
         if(response.status===403){
-          alert('User already Exists!')
+          toast.error('User already Exists🤡🤡')
+
+          // alert('User already Exists!')
         }
         if (response.status === 201){
           let result=await response.json()
@@ -84,12 +94,14 @@ export default function Sinup() {
           console.log(result.data)
           setUserData(response);
           // console.log(userData);
-          alert('Sing up succefully')
+          // alert('Sing up succefully')
+          toast.success('Sing up succefully😀😀')
           setTimeout(()=>{
             navigate("/login")
           },2000)
         }else{
-          alert("sign up failed")
+          // alert("sign up failed")
+          toast.error('Sing up failed 👽👽')
         }
       }
       catch(error){

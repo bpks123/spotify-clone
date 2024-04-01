@@ -7,6 +7,7 @@ export default function SearchAllSongs() {
     const [{ selectedCard, favorites}, dispatch] = useStateProvider();
     const projectId="c91eotf57uop";
   
+    //function for Search all songs
     async function Search(){
       try{
         const response= await fetch('https://academics.newtonschool.co/api/v1/music/song?limit=100', {
@@ -27,6 +28,8 @@ export default function SearchAllSongs() {
   useEffect(()=>{
     Search()
   },[])
+  
+  // to see when click on music
   useEffect(() => {
     console.log("Updated musicList:", musicList);
   }, [musicList]);

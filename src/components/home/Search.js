@@ -1,4 +1,6 @@
 import React ,{useEffect, useState} from 'react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Box,
   Card,
@@ -21,6 +23,7 @@ import top20 from "./top-20.png"
 import loading from "./loading.gif"
 import SongCard from '../Card/SongCard';
 import { useNavigate } from "react-router-dom";
+
 export default function Search() {
   const navigate = useNavigate();
   const [{searchSong,token }, dispatch] = useStateProvider();
@@ -54,7 +57,9 @@ export default function Search() {
             projectId: projectId,
           }})
           if(response.status===404){
-            alert('No song founds')
+            toast.error('No songs Found!',{
+              autoClose: 3000,
+            })
           }
           const result=await response.json();
           console.log('songs')

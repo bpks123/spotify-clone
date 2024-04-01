@@ -3,7 +3,8 @@ import "../Login/Login.css"
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Container, Typography } from "@mui/material";
 import logo from "../../layouts/logo.png"
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
 
@@ -38,13 +39,17 @@ export default function Login() {
         console.log(result.data.name)
         localStorage.setItem("jwtToken", result.token);
         localStorage.setItem("userName", result.data.name);
-        navigate("/")
-        alert('Sing in succefully')
+        setTimeout(() => {
+          navigate("/")
+        }, 1000);
+        // alert('Sing in succefully')
+        toast.success('Sign in Successfully!😀😀')
       }
       else{
         let result= await response.json()
         const message=result.message
-        alert(message)
+        // alert(message)
+        toast.error(message)
       }
 
     }
