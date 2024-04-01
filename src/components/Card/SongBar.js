@@ -15,6 +15,7 @@ export default function SongBar() {
 
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isSourceplay,setSourcePlay]=useState(false)
   const [audiourl, setAudioUrl] = useState("");
   const [{ selectedCard, selectedSong, token }, dispatch] = useStateProvider();
 
@@ -24,6 +25,30 @@ export default function SongBar() {
     }
   }, [selectedSong]);
 
+  useEffect(() => {
+    const handlePlay = () => {
+      console.log('Play')
+      setIsPlaying((prev)=>true)
+    };
+    const audioElement = audioRef.current;
+    audioElement.addEventListener('play', handlePlay);
+
+    return () => {
+      audioElement.removeEventListener('play', handlePlay);
+    };
+  }, []);
+  useEffect(() => {
+    const handlePlay = () => {
+      console.log('Pause')
+      setIsPlaying((prev)=>false)
+    };
+    const audioElement = audioRef.current;
+    audioElement.addEventListener('pause', handlePlay);
+
+    return () => {
+      audioElement.removeEventListener('pause', handlePlay);
+    };
+  }, []);
   const loadSong = (audioUrl) => {
     if (audioRef.current && audioRef.current.src !== audioUrl && token) {
       // Stop the currently playing audio (if any)
@@ -37,6 +62,7 @@ export default function SongBar() {
       setIsPlaying(true);
     }
   };
+  
   const audioRef = useRef(null);
 
   const handlePlayPause = () => {
@@ -149,7 +175,7 @@ export default function SongBar() {
 
           <div style={{ paddingBottom: "10px" }}>
           <BiShuffle className="songIcons" />
-          <IoMdSkipBackward className="songIcons" />
+          <IoMdSkipBackward onClick={handlePrevious} className="songIcons" />
           {isPlaying ? (
             <FaPause onClick={handlePlayPause} className="songIcons" />
           ) : (
