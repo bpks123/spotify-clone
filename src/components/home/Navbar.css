@@ -94,7 +94,11 @@
     padding:5px;
     /* background:linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44) */
 }
-
+.welcome-colortext{
+    font-size:25px;
+    padding:5px;
+    color:red
+}
 @media screen and (max-width: 750px) {
     .logInLink{
       display: none;

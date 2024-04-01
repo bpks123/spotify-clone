@@ -22,7 +22,11 @@ export default function Navbar() {
   const [{searchClicked, token, name, searchSong }, dispatch] =
     useStateProvider();
   const [open, setOpen] = useState(false);
+  const userInfomation=localStorage.getItem("userName")
+  const [userInfo,setUserInfo]=useState(userInfomation)
+  const [flag,setFlag]=useState(false)
 
+  
 
   const handleLogOut = () => {
     dispatch({ type: "SET_NAME", payload: null });
@@ -153,8 +157,8 @@ export default function Navbar() {
 
         </div>
         
-        {(token && !searchClicked)?(<div className="welcome-text">
-         Welcome {localStorage.getItem("userName")} to Spotify Music
+        {(token && !searchClicked)?(<div className={flag?"welcome-text":'welcome-colortext'}>
+         Welcome {userInfo} to Spotify Music
         </div>):""}
         
         {token ? (
