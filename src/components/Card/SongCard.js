@@ -8,6 +8,8 @@ import { useStateProvider } from "../utils/StateProvider";
 export default function SongCard({ song }) {
   const [token, dispatch] = useStateProvider();
   const navigate = useNavigate();
+
+  // To select the song and play with music player
   const handleCardClick = () => {
     if (token.token) {
       dispatch({ type: "SET_SELECTED_SONG", payload: song });

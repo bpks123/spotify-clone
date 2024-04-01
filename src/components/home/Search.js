@@ -30,15 +30,18 @@ export default function Search() {
   const [allsearchSongs, setAllsearchSongs]=useState([]);
   const [isloading,setIsloading]=useState(true)
   const [check,setCheck]=useState(true)
+  const [isSong,setIsSong]=useState('No song Found! Try Again...')
   const projectId="c91eotf57uop"; 
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
+  // to see the output of search song
   useEffect(() => {
     console.log("You have searched song==> "+searchSong);
   }, [searchSong]);
 
+  // For searching the songs
   const handleInput= async (e)=>{
     if(e.key==="Enter"){
       if(searchQuery.length===0){
@@ -50,8 +53,12 @@ export default function Search() {
           headers: {
             projectId: projectId,
           }})
+          if(response.status===404){
+            alert('No song founds')
+          }
           const result=await response.json();
           console.log('songs')
+          
           setAllsearchSongs(result.data)
           console.log(allsearchSongs)
           const songData=result.data[0]
@@ -69,6 +76,7 @@ export default function Search() {
     setCheck(!check)
     setIsloading(true)
   }
+  // TO search the song by filter
   const songSearch= async (input)=>{
     console.log(input);
      let url;
@@ -124,7 +132,7 @@ export default function Search() {
   }
   return (
     <>
-    
+    {/* If not search a song then the fist one be visible after click it will hide and sencond one visible */}
     {check?(
       <div className='homePage'>
           <div className="searchBarSection">
@@ -145,6 +153,7 @@ export default function Search() {
             
             
             <button className='backButton'  onClick={()=>searchMenu()}>&larr; Back To Search Menu</button>
+            {/* this below button visible in responsive mode */}
             <button className='back'  onClick={()=>searchMenu()}>&larr; Back</button>
             <div className="homeBody"
           style={{
@@ -156,7 +165,8 @@ export default function Search() {
           }}>
             {allsearchSongs?allsearchSongs.map((music)=>(
               <SongCard song={music} key={music._id}/>
-            )):'Soory! No songs found. Try Again!!!'}
+            )):
+            <div>{isSong}</div>}
             </div>
           </div>
           ):(

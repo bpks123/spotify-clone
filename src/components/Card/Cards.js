@@ -15,6 +15,8 @@ import {
 export default function Cards({music}) {
   const [, dispatch] = useStateProvider();
   const navigate=useNavigate()
+
+  // To set the album for the selected card
   const handleCardClick = () => {
     dispatch({ type: "SET_SELECTED_CARD", payload: music });
     console.log(music);

@@ -24,6 +24,7 @@ export default function Home() {
   const [{ selectedCard, favorites, list }, dispatch] = useStateProvider();
   const projectId="c91eotf57uop";
 
+  // Search all the album when page loads
  async function Search(){
       try{
         const response= await fetch('https://academics.newtonschool.co/api/v1/music/album', {
@@ -41,6 +42,7 @@ export default function Home() {
       }
       
   }
+  // Search all the songs when page loads
   async function songSearch(){
     try{
       const response= await fetch('https://academics.newtonschool.co/api/v1/music/song?limit=50', {
@@ -62,10 +64,12 @@ export default function Home() {
     songSearch()
   },[])
 
+  // To see the output of updated music lists
   useEffect(() => {
     console.log("Updated musicList:", musicList);
   }, [musicList]);
 
+   // To see the output of selected card
   useEffect(() => {
     if (selectedCard) {
       console.log("Selected Card:", selectedCard);

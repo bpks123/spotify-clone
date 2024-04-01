@@ -20,6 +20,7 @@ export default function LikedPage() {
   console.log("fav", favorites);
   const navigate = useNavigate();
 
+  // to play the liked song by adding into music player
   const handleLikedSong =(song)=>{
     dispatch({ type: "SET_SELECTED_SONG", payload: song });
     navigate('/songs')
@@ -61,6 +62,7 @@ export default function LikedPage() {
         ml="25px"
         mr="25px"
         justifyContent="center">
+          {/* Display all the music from favourites */}
           {favorites?.map((music) => (
           <Card
             sx={{ maxWidth: 130, mt: "15px", mr: "10px", background: "black" }}

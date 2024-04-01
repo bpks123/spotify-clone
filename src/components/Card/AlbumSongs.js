@@ -18,11 +18,12 @@ export default function AlbumSongs() {
 
   const [{ selectedCard, favorites, token, selectedSong }, dispatch] = useStateProvider();
   const navigate = useNavigate();
-
+// From SelectedCard we fill all the data
   const handleSongClick = (song) => {
     dispatch({ type: "SET_SELECTED_SONG", payload: song });
     navigate("/songs");
   };
+  // To find the date
   const dateCalculator = (str) => {
     var curDate = new Date(str);
     var localOffset = new Date().getTimezoneOffset();
@@ -104,7 +105,7 @@ export default function AlbumSongs() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* Map the album content need to updated */}
+                  {/* Display all the related songs with Id */}
                   {selectedCard.songs.map((song, id) => (
                   <TableRow
                     key={song._id}

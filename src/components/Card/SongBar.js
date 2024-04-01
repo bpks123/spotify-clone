@@ -13,18 +13,18 @@ import { Box } from "@mui/material";
 
 export default function SongBar() {
 
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSourceplay,setSourcePlay]=useState(false)
   const [audiourl, setAudioUrl] = useState("");
   const [{ selectedCard, selectedSong, token }, dispatch] = useStateProvider();
 
+  // First time load 
   useEffect(() => {
     if (selectedSong) {
       loadSong(selectedSong.audio_url); // Load the selected song
     }
   }, [selectedSong]);
 
+  // Using useEffect for synchonous the play button with play symbol
   useEffect(() => {
     const handlePlay = () => {
       console.log('Play')
@@ -37,6 +37,8 @@ export default function SongBar() {
       audioElement.removeEventListener('play', handlePlay);
     };
   }, []);
+
+  // Using useEffect for synchonous the pause button with pause symbol
   useEffect(() => {
     const handlePlay = () => {
       console.log('Pause')
@@ -49,6 +51,8 @@ export default function SongBar() {
       audioElement.removeEventListener('pause', handlePlay);
     };
   }, []);
+
+// If found the selected song then this funtion runs to play the song
   const loadSong = (audioUrl) => {
     if (audioRef.current && audioRef.current.src !== audioUrl && token) {
       // Stop the currently playing audio (if any)
@@ -122,6 +126,7 @@ export default function SongBar() {
   
   return (
     <div className="songBar">
+      {/* To show the images of the song and title */}
       {selectedSong? (
         <Box
         sx={{
@@ -166,6 +171,7 @@ export default function SongBar() {
         </Box>
       )
       }
+      {/* To show the play pause button and controls */}
       <div style={{
           display: "flex",
           flexDirection: "column",
@@ -189,6 +195,7 @@ export default function SongBar() {
           Your browser does not support the audio element.
         </audio>
       </div>
+      {/* To show the library examples */}
       <Box
         sx={{
           display: "flex",

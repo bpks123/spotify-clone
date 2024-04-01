@@ -178,6 +178,9 @@ export default function Sinup() {
                 required
               />
             </FormControl>
+            <FormControl fullWidth margin="normal">
+              <label for="username">DOB (e.g. 2000-09-24 )</label>
+            </FormControl>
             <div className="birthdate-input">
               <FormControl className="input-group" margin="normal">
                 <label>Year</label>

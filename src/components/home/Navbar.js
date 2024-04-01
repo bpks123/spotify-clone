@@ -19,12 +19,13 @@ import spotifylogo from '../../assests/Spotify_Logo_RGB_Green.png'
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const [{searchClicked, token, name, searchSong }, dispatch] =
-    useStateProvider();
+  const [{searchClicked, token }, dispatch] = useStateProvider();
   const [open, setOpen] = useState(false);
   const userInfomation=localStorage.getItem("userName")
   const [userInfo,setUserInfo]=useState(userInfomation)
   const [flag,setFlag]=useState(false)
+
+  // to change the color of the userInformation
   useEffect(()=>{
     const intervalTime=setInterval(()=>{
       setFlag((prevFlag) => !prevFlag)
@@ -32,7 +33,7 @@ export default function Navbar() {
     return()=>clearInterval(intervalTime)
   },[])
   
-  
+
 
   const handleLogOut = () => {
     dispatch({ type: "SET_NAME", payload: null });
@@ -45,6 +46,7 @@ export default function Navbar() {
     navigate("/");
   };
   const toggleDrawer = (isOpen) => (event) => {
+    // to avoid unnecessary opening when searching the songs
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -53,7 +55,7 @@ export default function Navbar() {
     }
     setOpen(isOpen);
   };  
-
+// TO display the side list when display in mobile or tablet
   const sideList = () => (
     <List>
       <ListItem button
@@ -163,10 +165,12 @@ export default function Navbar() {
 
         </div>
         
+        {/* Display when user Logged In */}
         {(token && !searchClicked)?(<div className={flag?"welcome-text":'welcome-colortext'}>
          Welcome {userInfo} to Spotify Music
         </div>):""}
         
+        {/* Display when user Logged In */}
         {token ? (
           <div>
             <Link

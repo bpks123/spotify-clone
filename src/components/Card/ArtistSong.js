@@ -20,7 +20,8 @@ const theme = createTheme();
 export default function ArtistSong() {
   const [{ selectedCard, selectedArtist,token, selectedSong, favorites }, dispatch] = useStateProvider();
   const navigate = useNavigate();
-
+ 
+// to see the song of the selected artist
   useEffect(() => {
     console.log("selectedArtist", selectedArtist);
   }, [selectedArtist]);
@@ -49,6 +50,7 @@ export default function ArtistSong() {
       dispatch({ type: "REMOVE_FAVORITE", payload: song.album });
     }
   };
+  // calculate the date of song
   const dateCalculator = (str) => {
     var utcDate = new Date(str);
     var localOffset = new Date().getTimezoneOffset();
