@@ -1,4 +1,6 @@
 import React from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FaPlay } from "react-icons/fa";
 import "./Card.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,8 +16,11 @@ export default function SongCard({ song }) {
     if (token.token) {
       dispatch({ type: "SET_SELECTED_SONG", payload: song });
     } else {
-      alert("please login")
-      navigate("/login");
+      // alert("please login")
+      toast.error('Please login to lisen song!')
+      setTimeout(() => {
+        navigate("/login");        
+      }, 1000);
     }
     console.log(song);
     
