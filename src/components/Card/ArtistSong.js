@@ -118,6 +118,7 @@ export default function ArtistSong() {
               />
             )}
           </div>
+          {/* arrange the songs in the table */}
           <TableContainer component={Paper}
             sx={{
               background: "linear-gradient(to bottom, #223c59, #121212)",

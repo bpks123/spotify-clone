@@ -178,8 +178,10 @@ export default function SongBar() {
           width: "100%",
           alignItems: "center",
         }}>
-
-          <div style={{ paddingBottom: "10px" }}>
+          {/* Display only if any song is selected */}
+          {
+            selectedSong?
+            <div style={{ paddingBottom: "10px" }}>
           <BiShuffle className="songIcons" />
           <IoMdSkipBackward onClick={handlePrevious} className="songIcons" />
           {isPlaying ? (
@@ -189,7 +191,9 @@ export default function SongBar() {
           )}
           <IoMdSkipForward onClick={handleNext} className="songIcons" />
           <BiRepeat onClick={handlePlayAgain} className="songIcons" />
-        </div>
+        </div>:''
+          }
+          
         <audio ref={audioRef}  controls className="audioSpotify">
           <source src={audiourl} type="audio/mpeg" />
           Your browser does not support the audio element.

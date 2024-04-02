@@ -198,6 +198,7 @@ export default function SideBar() {
         </div>
       </Box>
       <div id="footer">
+        {/* coming soon pages */}
         <div id="sideBar_footer">
           {token && <Link to="/forgot">Change Password</Link>}
           <Link to={'/comingsoon'}>About</Link>
