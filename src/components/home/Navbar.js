@@ -25,17 +25,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const userInfomation=localStorage.getItem("userName")
   const [userInfo,setUserInfo]=useState(userInfomation)
-  const [flag,setFlag]=useState(false)
-
-  // to change the color of the userInformation
-  useEffect(()=>{
-    const intervalTime=setInterval(()=>{
-      setFlag((prevFlag) => !prevFlag)
-    },1000)
-    return()=>clearInterval(intervalTime)
-  },[])
-  
-
 
   const handleLogOut = () => {
     dispatch({ type: "SET_NAME", payload: null });
@@ -168,7 +157,7 @@ export default function Navbar() {
         </div>
         
         {/* Display when user Logged In */}
-        {(token && !searchClicked)?(<div className={flag?"welcome-text":'welcome-colortext'}>
+        {(token && !searchClicked)?(<div className="welcome-text">
          Welcome {userInfo} to Spotify Music
         </div>):""}
         
